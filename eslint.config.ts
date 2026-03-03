@@ -6,7 +6,7 @@ import reactHooks from "eslint-plugin-react-hooks"
 import reactRefresh from "eslint-plugin-react-refresh"
 import simpleImportSort from "eslint-plugin-simple-import-sort"
 import globals from "globals"
-import tseslint from "typescript-eslint"
+import { configs as tsEslintConfigs } from "typescript-eslint"
 
 import viteConfig from "./vite.config.ts"
 
@@ -21,7 +21,7 @@ export default defineConfig([
     },
     extends: [
       js.configs.recommended,
-      tseslint.configs.recommended,
+      tsEslintConfigs.recommended,
       importPlugin.flatConfigs.recommended,
       importPlugin.flatConfigs.typescript,
       reactHooks.configs.flat.recommended,
