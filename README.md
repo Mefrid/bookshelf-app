@@ -1,75 +1,43 @@
-# React + TypeScript + Vite
+# 📚 NoteArtist – интерактивный дневник
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📖 Что это такое
 
-Currently, two official plugins are available:
+NoteArtist – это мой пет-проект, приложение для написания и организации текстовых файлов.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Дневники можно хранить либо локально на устройстве, либо в облаке. Для написания файлов предоставляется удобный WYSIWYG-редактор, поддерживающий:
 
-## React Compiler
+- Все базовые функции для оформления текста: жирность, курсив и тд
+- Заголовки разных уровней
+- Списки
+- Ссылки
+- Выравнивание контента
+- Загрузку картинок
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+Приложение задумывалось, как **Desktop-first**, ибо оно подразумевает активное использование клавиатуры и горячих клавиш. Но оно также адаптировано и под **мобильные устройства**.
 
-Note: This will impact Vite dev & build performances.
+Это также и **PWA приложение**, поддерживающее **offline-режим**.
 
-## Expanding the ESLint configuration
+## 💡 Цели и источники вдохновения
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Захотелось написать какой-нибудь пет-проект **с нуля**, следуя принципам чистой архитектуры применительно к React.
+- В последний год я разрабатывал исключительно на Angular. Не думал, что соскучусь по React-у, но имеем, что имеем :). Я давненько хотел опробовать все современные фичи React-а, типа Suspend, так что это отличный повод.
+- Хотелось попробовать какие-нибудь библиотеки для работы с анимациями, а также посмотреть, как работает view-transition.
+- ⭐ Уже давно засматриваюсь на Rust, но все боялся/ленился опробовать его в деле. Такой пет-проект содержит мало бэкенда, из-за чего отлично подходит для пробы пера.
 
-```js
-export default defineConfig([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
+В качестве вдохновения для дизайна и функционала послужили популярные приложения [Notion](https://www.notion.com/) и [Obsidian](https://obsidian.md/), которые я сам использовал в повседневной жизни.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 🔧 Архитектура приложения
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Я хотел поэкспериментировать с давно мелькавшей передо мной архитектурой [Feature-Sliced Design](https://feature-sliced.design/). Но для меня она оставила слишком много неопределенностей и неудобств:
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- **Нет четких границ между слоями**. Например, одно и то же можно отнести как к feature, так и к widget.
+- **Мало конкретики о внутреннем устройстве слайсов**.
+- **Проблема с кросс-зависимостями**. На сайте FSD предлагают либо вынести что-то общее в shared, либо явно указать кросс-зависимость в импорте. В первом варианте shared превратится в пахнущую папку наподобие lib или utils с кучей уже бизнесовых сущностей и юзкейсов, а во втором случае проблема вовсе не решится.
 
-```js
-// eslint.config.js
-import reactX from "eslint-plugin-react-x"
-import reactDom from "eslint-plugin-react-dom"
+Кажется, что эта архитектура в случае серьезного расширения приложения просто не выдержит и от её плюсов останется только красивая структура папок. ИМХО, разумеется.
 
-export default defineConfig([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs["recommended-typescript"],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Поэтому я решил попробовать написать приложение по **Clean Architecture**. Да, возможно, для пет-проекта это overkill, но это хорошая возможность попрактиковаться с ней на _чистом листе_.
+
+### Структура
+
+_TODO_
