@@ -1,4 +1,4 @@
-import type { DateTimeString, UUID } from "./shared"
+import type { DateTimeString, UUID } from "../../shared/shared"
 
 export type Document = {
   id: UUID

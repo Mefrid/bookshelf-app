@@ -1,0 +1,1 @@
+export { NoSpacesPlaceholder } from "./NoSpacesPlaceholder"

@@ -1,0 +1,14 @@
+.container {
+  display: grid;
+  place-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  text-align: center;
+  gap: 8px;
+}
+
+.img {
+  width: 200px;
+}

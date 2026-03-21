@@ -1,7 +1,7 @@
 import js from "@eslint/js"
 import { defineConfig, globalIgnores } from "eslint/config"
 import eslintConfigPrettier from "eslint-config-prettier/flat"
-import checkFile from 'eslint-plugin-check-file';
+import checkFile from "eslint-plugin-check-file"
 import importPlugin from "eslint-plugin-import"
 import reactHooks from "eslint-plugin-react-hooks"
 import reactRefresh from "eslint-plugin-react-refresh"
@@ -19,7 +19,7 @@ export default defineConfig([
     files: ["**/*.{ts,tsx}"],
     plugins: {
       "simple-import-sort": simpleImportSort,
-      "check-file": checkFile
+      "check-file": checkFile,
     },
     extends: [
       js.configs.recommended,
@@ -50,10 +50,11 @@ export default defineConfig([
       "import/first": "error",
       "import/newline-after-import": "error",
       "import/no-duplicates": "error",
-      'check-file/filename-naming-convention': [
-        'error',
+      "check-file/filename-naming-convention": [
+        "error",
         {
-          '**/*.{ts,tsx}': 'KEBAB_CASE',
+          "**/*.{ts}": "KEBAB_CASE",
+          "**/*.{tsx}": "PASCAL_CASE",
         },
         {
           ignoreMiddleExtensions: true,
